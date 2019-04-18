@@ -1,7 +1,5 @@
-// init globals
 window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function () { dataLayer.push(arguments); };
-// configure first timestamp
 gtag("js", new Date());
 var GoogleAnalyticsInterop;
 (function (GoogleAnalyticsInterop) {
@@ -19,4 +17,3 @@ var GoogleAnalyticsInterop;
     }
     GoogleAnalyticsInterop.navigate = navigate;
 })(GoogleAnalyticsInterop || (GoogleAnalyticsInterop = {}));
-//# sourceMappingURL=GoogleAnalyticsInterop.js.map

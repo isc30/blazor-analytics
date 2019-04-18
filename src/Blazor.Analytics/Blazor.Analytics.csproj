@@ -13,6 +13,7 @@
 
     <RootNamespace>Blazor.Analytics</RootNamespace>
     <AssemblyName>Blazor.Analytics</AssemblyName>
+
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>isc30</Authors>
@@ -24,10 +25,10 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
     <Product>Blazor Analytics</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <RepositoryType>git</RepositoryType>
     <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,14 +42,6 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
 
   <ItemGroup>
     <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="GoogleAnalytics\Components\GoogleAnalytics.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="GoogleAnalytics\Components\GoogleAnalytics.razor" />
   </ItemGroup>
 
 </Project>
