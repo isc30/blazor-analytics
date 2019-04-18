@@ -14,6 +14,7 @@
     <RootNamespace>Blazor.Analytics</RootNamespace>
     <AssemblyName>Blazor.Analytics</AssemblyName>
 
+    <IncludeContentInPack>false</IncludeContentInPack>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>isc30</Authors>
