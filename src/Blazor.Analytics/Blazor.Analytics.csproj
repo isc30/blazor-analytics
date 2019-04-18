@@ -14,25 +14,32 @@
     <RootNamespace>Blazor.Analytics</RootNamespace>
     <AssemblyName>Blazor.Analytics</AssemblyName>
 
-    <IncludeContentInPack>false</IncludeContentInPack>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <!-- IMPORTANT --><IncludeContentInPack>false</IncludeContentInPack>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>isc30</Authors>
     <Company>CodeIsc</Company>
     <PackageId>Blazor-Analytics</PackageId>
+    <Title>Blazor Analytics</Title>
     <Description>Blazor extensions for Analytics.
 Supported platforms: Google Analytics, GTAG, ...</Description>
     <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
     <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
-    <Product>Blazor Analytics</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <RepositoryType>git</RepositoryType>
     <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.4.3" PrivateAssets="all">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.9.0-preview3-19154-02" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.9.0-preview3-19154-02" PrivateAssets="all" />
   </ItemGroup>
