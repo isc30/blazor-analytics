@@ -1,4 +1,4 @@
-Blazor extensions for Google Analytics, etc
+Blazor extensions for Analytics: Google Analytics, GTAG, ...
 
 ## Google Analytics, GTAG
 Add the `GoogleAnalytics` component below your Router in `App.cshtml`.<br/>
