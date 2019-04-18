@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.2</LangVersion>
     <OutputType>Library</OutputType>
-    <IsPackable>true</IsPackable>
 
     <RestoreAdditionalProjectSources>
       https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
@@ -14,12 +13,14 @@
     <RootNamespace>Blazor.Analytics</RootNamespace>
     <AssemblyName>Blazor.Analytics</AssemblyName>
 
+    <IsPackable>true</IsPackable>
     <!-- IMPORTANT --><IncludeContentInPack>false</IncludeContentInPack>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>isc30</Authors>
     <Company>CodeIsc</Company>
     <PackageId>Blazor-Analytics</PackageId>
+    <Product>Blazor Analytics</Product>
     <Title>Blazor Analytics</Title>
     <Description>Blazor extensions for Analytics.
 Supported platforms: Google Analytics, GTAG, ...</Description>
