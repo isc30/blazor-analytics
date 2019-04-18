@@ -1,6 +1,11 @@
 Blazor extensions for Analytics: Google Analytics, GTAG, ...
 
-## Google Analytics, GTAG
+# NuGet Package
+https://nuget.org/packages/Blazor-Analytics
+
+# Configuration
+
+### Google Analytics, GTAG
 
 First, import the component in `_ViewImports.cshtml`
 
