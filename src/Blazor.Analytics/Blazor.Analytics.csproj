@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.2</LangVersion>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+
+    <RestoreAdditionalProjectSources>
+      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
+      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
+    </RestoreAdditionalProjectSources>
+
+    <RootNamespace>Blazor.Analytics</RootNamespace>
+    <AssemblyName>Blazor.Analytics</AssemblyName>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>isc30</Authors>
+    <Company>CodeIsc</Company>
+    <PackageId>Blazor-Analytics</PackageId>
+    <Description>Blazor extensions for Analytics.
+Supported platforms: Google Analytics, GTAG, ...</Description>
+    <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
+    <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
+    <Product>Blazor Analytics</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.2</Version>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.9.0-preview3-19154-02" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.9.0-preview3-19154-02" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="GoogleAnalytics\Resources\**\*.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="GoogleAnalytics\Components\GoogleAnalytics.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="GoogleAnalytics\Components\GoogleAnalytics.razor" />
+  </ItemGroup>
+
+</Project>
