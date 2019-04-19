@@ -15,7 +15,7 @@ First, import the component in `_Imports.razor`
 @using Blazor.Analytics.GoogleAnalytics.Components
 ```
 
-Then, add the `GoogleAnalytics` component below your Router in `App.cshtml`.<br/>
+Then, add the `GoogleAnalytics` component below your Router in `App.razor`.<br/>
 The tracker listens to every navigation change while it's rendered on a page.
 
 ```
