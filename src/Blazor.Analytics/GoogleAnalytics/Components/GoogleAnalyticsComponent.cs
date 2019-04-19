@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Blazor.Analytics.Constants;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Services;
 using Microsoft.JSInterop;
 
-namespace Blazor.Analytics
+namespace Blazor.Analytics.GoogleAnalytics.Components
 {
     public class GoogleAnalyticsComponent : ComponentBase, IDisposable
     {
