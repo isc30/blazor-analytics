@@ -30,20 +30,12 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
     <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <RepositoryType>git</RepositoryType>
     <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.4.3" PrivateAssets="all">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview4-19216-03" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
   </ItemGroup>
