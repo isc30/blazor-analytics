@@ -21,6 +21,7 @@ namespace GoogleAnalyticsInterop
     export function configure(trackingId: string): void
     {
         const script = document.createElement("script");
+        script.async = true;
         script.src = "https://www.googletagmanager.com/gtag/js?id=" + trackingId;
 
         document.head.appendChild(script);
