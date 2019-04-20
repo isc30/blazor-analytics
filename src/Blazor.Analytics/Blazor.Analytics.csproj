@@ -30,7 +30,7 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
     <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.7</Version>
+    <Version>1.0.9</Version>
     <RepositoryType>git</RepositoryType>
     <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
   </PropertyGroup>
@@ -39,13 +39,13 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview4-19216-03" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview4-19216-03" PrivateAssets="all" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <TypeScriptCompile Include="**\*.ts" />
+  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <TypeScriptCompile Include="GoogleAnalytics\Resources\**\*.ts" />
   </ItemGroup>
 
 </Project>
