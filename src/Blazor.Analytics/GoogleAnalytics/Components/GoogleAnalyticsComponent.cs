@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Blazor.Analytics.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Microsoft.AspNetCore.Components.Routing;
 
 namespace Blazor.Analytics.GoogleAnalytics.Components
 {
@@ -20,11 +21,13 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
         protected override async Task OnInitAsync()
         {
             base.OnInit();
-            
-            UriHelper.OnLocationChanged += OnLocationChanged;
 
-            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
-                TrackingId);
+            UriHelper.OnLocationChanged += OnLocationChanged;
+        }
+
+        protected override async Task OnAfterRenderAsync()
+        {
+            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure, TrackingId);
         }
 
         public void Dispose()
@@ -32,7 +35,7 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
             UriHelper.OnLocationChanged -= OnLocationChanged;
         }
 
-        private async void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+        private async void OnLocationChanged(object sender, LocationChangedEventArgs e)
         {
             var relativeUri = new Uri(e.Location).PathAndQuery;
 
