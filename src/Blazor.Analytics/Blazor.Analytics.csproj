@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -15,7 +15,7 @@
 
     <RootNamespace>Blazor.Analytics</RootNamespace>
     <AssemblyName>Blazor.Analytics</AssemblyName>
-
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <IsPackable>true</IsPackable>
     <IncludeContentInPack>false</IncludeContentInPack>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -44,8 +44,16 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <TypeScriptCompile Include="**\*.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+ <ItemGroup>
+    <!-- .js/.css files will be referenced via <script>/<link> tags; other content files will just be included in the app's 'dist' directory without any tags referencing them -->
+    <EmbeddedResource Include="content\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
+ <ItemGroup>
+   <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+     <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.0.0-preview6.19307.2\ref\netcoreapp3.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+   </Reference>
+ </ItemGroup>
 </Project>
