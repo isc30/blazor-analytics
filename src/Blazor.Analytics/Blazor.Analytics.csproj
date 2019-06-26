@@ -38,6 +38,7 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview6.19307.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview6.19307.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,10 +51,4 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <EmbeddedResource Include="content\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="content\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
-
- <ItemGroup>
-   <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
-     <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.0.0-preview6.19307.2\ref\netcoreapp3.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
-   </Reference>
- </ItemGroup>
 </Project>
