@@ -20,7 +20,7 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
         protected override async Task OnInitAsync()
         {
             base.OnInit();
-
+            
             UriHelper.OnLocationChanged += OnLocationChanged;
 
             await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
@@ -32,12 +32,13 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
             UriHelper.OnLocationChanged -= OnLocationChanged;
         }
 
-        private async void OnLocationChanged(object sender, string absoluteUri)
+        private async void OnLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
         {
-            var relativeUri = new Uri(absoluteUri).PathAndQuery;
+            var relativeUri = new Uri(e.Location).PathAndQuery;
 
             await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Navigate,
                 TrackingId, relativeUri);
         }
+
     }
 }
