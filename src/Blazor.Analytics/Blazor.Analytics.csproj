@@ -30,7 +30,7 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
     <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
     <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <RepositoryType>git</RepositoryType>
     <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
   </PropertyGroup>
