@@ -22,19 +22,3 @@ The tracker listens to every navigation change while it's rendered on a page.
 <Router AppAssembly="typeof(App).Assembly" />
 <GoogleAnalytics TrackingId="UA-XXXXXXXXX-X" />
 ```
-Then, add `<script src="~/Blazor.Analytics/blazor-analytics.js"></script>` in `_Host.cshtml`
-```
-<environment include="Development">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-    <script src="~/Blazor.Analytics/blazor-analytics.js"></script>
-</environment>
-```
-
-Finally, add `app.UseBlazorAnalytics(env.WebRootPath);`  below `app.UseStaticFiles();` in `Startup.cs`
-
-```
-app.UseStaticFiles();
-app.UseBlazorAnalytics(env.WebRootPath);
-```
-
-            
