@@ -1,4 +1,5 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -6,7 +7,7 @@
     "sourceMap": false,
     "target": "es5",
     "module": "none",
-    "outFile": "blazor-analytics.js"
+    "outFile": "wwwroot/blazor-analytics.js"
   },
   "exclude": [
     "node_modules"

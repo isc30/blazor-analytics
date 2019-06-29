@@ -10,37 +10,54 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
     public class GoogleAnalyticsComponent : ComponentBase, IDisposable
     {
         [Parameter]
-        protected string TrackingId { get; set; } = null;
+        protected string TrackingId { get; set; }
+
+        [Parameter]
+        protected string ContainerId { get; set; }
 
         [Inject]
-        protected IUriHelper UriHelper { get; set; } = null;
+        protected IUriHelper UriHelper { get; set; }
 
         [Inject]
-        protected IJSRuntime JSRuntime { get; set; } = null;
+        protected IJSRuntime JSRuntime { get; set; }
 
         protected override async Task OnInitAsync()
         {
             base.OnInit();
 
-            UriHelper.OnLocationChanged += OnLocationChanged;
+            UriHelper.OnLocationChanged += OnLocationChangedAsync;
+
         }
 
         protected override async Task OnAfterRenderAsync()
         {
-            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure, TrackingId);
+            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
+                TrackingId);
+
+            if (this.ContainerId != null)
+            {
+                await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.GoogleTagManager, ContainerId);
+            }
+
+            base.OnAfterRenderAsync();
         }
 
         public void Dispose()
         {
-            UriHelper.OnLocationChanged -= OnLocationChanged;
+            UriHelper.OnLocationChanged -= OnLocationChangedAsync;
         }
 
-        private async void OnLocationChanged(object sender, LocationChangedEventArgs e)
+        private async void OnLocationChangedAsync(object sender, LocationChangedEventArgs e)
         {
             var relativeUri = new Uri(e.Location).PathAndQuery;
 
             await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Navigate,
                 TrackingId, relativeUri);
+
+            //if (this.ContainerId != null)
+            //{
+            //    await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.GoogleTagManager, ContainerId);
+            //}
         }
 
     }
