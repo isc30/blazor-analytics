@@ -12,7 +12,7 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
         protected string TrackingId { get; set; } = null;
 
         [Inject]
-        protected IUriHelper UriHelper { get; set; } = null;
+        protected NavigationManager NavigationManager { get; set; } = null;
 
         [Inject]
         protected IJSRuntime JSRuntime { get; set; } = null;
@@ -21,7 +21,7 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
         {
             base.OnInit();
 
-            UriHelper.OnLocationChanged += OnLocationChanged;
+            NavigationManager.LocationChanged += OnLocationChanged;
 
             await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
                 TrackingId);
@@ -29,7 +29,7 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
 
         public void Dispose()
         {
-            UriHelper.OnLocationChanged -= OnLocationChanged;
+            NavigationManager.LocationChanged -= OnLocationChanged;
         }
 
         private async void OnLocationChanged(object sender, string absoluteUri)
