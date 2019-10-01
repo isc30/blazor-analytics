@@ -1,6 +1,6 @@
 Blazor extensions for Analytics: Google Analytics, GTAG, ...
 
-Blazor Version: 3.0.0-preview4-19216-03
+Blazor Version: 3.0.0-preview9-19424-04
 
 # NuGet Package
 https://nuget.org/packages/Blazor-Analytics
