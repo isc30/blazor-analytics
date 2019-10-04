@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Analytics", "Blazor.Analytics\Blazor.Analytics.csproj", "{E547547D-A5A6-40EB-AB7E-B7643C027956}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Client", "..\demo\DemoApp\DemoApp.Client\DemoApp.Client.csproj", "{5E0059D1-80A7-48CE-94BB-1A531ADAF28F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7B38FE55-C10A-4194-B710-A8E379BABC23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{1A9E8569-670C-43DE-BF58-210A48A45C4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{E547547D-A5A6-40EB-AB7E-B7643C027956}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E547547D-A5A6-40EB-AB7E-B7643C027956}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E547547D-A5A6-40EB-AB7E-B7643C027956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0059D1-80A7-48CE-94BB-1A531ADAF28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0059D1-80A7-48CE-94BB-1A531ADAF28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0059D1-80A7-48CE-94BB-1A531ADAF28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0059D1-80A7-48CE-94BB-1A531ADAF28F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E547547D-A5A6-40EB-AB7E-B7643C027956} = {7B38FE55-C10A-4194-B710-A8E379BABC23}
+		{5E0059D1-80A7-48CE-94BB-1A531ADAF28F} = {1A9E8569-670C-43DE-BF58-210A48A45C4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C00ECA7B-3844-48F6-990F-1DB71DA00F9F}
