@@ -19,6 +19,6 @@ Then, add the `GoogleAnalytics` component below your Router in `App.razor`.<br/>
 The tracker listens to every navigation change while it's rendered on a page.
 
 ```
-<Router AppAssembly="typeof(App).Assembly" />
+<Router ... />
 <GoogleAnalytics TrackingId="UA-XXXXXXXXX-X" />
 ```
