@@ -25,8 +25,11 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
             NavigationManager.LocationChanged -= OnLocationChanged;
             NavigationManager.LocationChanged += OnLocationChanged;
 
-            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
-                TrackingId);
+            await Task.Delay(1).ContinueWith(async t =>
+            {
+                await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Configure,
+                    TrackingId);
+            });
         }
 
         public void Dispose()
@@ -38,8 +41,11 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
         {
             var relativeUri = new Uri(args.Location).PathAndQuery;
 
-            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Navigate,
-                TrackingId, relativeUri);
+            await Task.Delay(1).ContinueWith(async t =>
+            {
+                await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.Navigate,
+                    TrackingId, relativeUri);
+            });
         }
     }
 }

@@ -45,7 +45,7 @@ Supported platforms: Google Analytics, GTAG, ...</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>
