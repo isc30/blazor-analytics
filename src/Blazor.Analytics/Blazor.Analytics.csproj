@@ -1,51 +1,52 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <OutputType>Library</OutputType>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        
+        <LangVersion>8.0</LangVersion>
+        <RazorLangVersion>3.0</RazorLangVersion>
+        <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
 
-    <LangVersion>8.0</LangVersion>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
+        <RootNamespace>Blazor.Analytics</RootNamespace>
+        <AssemblyName>Blazor-Analytics</AssemblyName>
 
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
+        <Version>3.0.0</Version>
+        <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Authors>isc30</Authors>
+        <Company>CodeIsc</Company>
+        <PackageId>Blazor-Analytics</PackageId>
+        <Product>Blazor Analytics</Product>
+        <Title>Blazor Analytics</Title>
+        <Description>Blazor extensions for Analytics. Supported platforms: Google Analytics, GTAG, ...</Description>
+        <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
+        <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
+    </PropertyGroup>
 
-    <RootNamespace>Blazor.Analytics</RootNamespace>
-    <AssemblyName>Blazor.Analytics</AssemblyName>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0" />
+    </ItemGroup>
 
-    <IsPackable>true</IsPackable>
-    <IncludeContentInPack>false</IncludeContentInPack>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>isc30</Authors>
-    <Company>CodeIsc</Company>
-    <PackageId>Blazor-Analytics</PackageId>
-    <Product>Blazor Analytics</Product>
-    <Title>Blazor Analytics</Title>
-    <Description>Blazor extensions for Analytics.
-Supported platforms: Google Analytics, GTAG, ...</Description>
-    <PackageTags>blazor google analytics gtag extensions razor components</PackageTags>
-    <RepositoryUrl>https://github.com/isc30/blazor-analytics</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0-preview9.19465.2</Version>
-    <RepositoryType>git</RepositoryType>
-    <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
-  </PropertyGroup>
+    <ItemGroup>
+        <Content Remove="tsconfig.json" />
+        <None Include="tsconfig.json" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview9.19465.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview9.19465.2" PrivateAssets="all" />
-  </ItemGroup>
+    <!-- Before Build -->
+    <ItemGroup>
+        <TypeScriptCompile Include="**\*.ts" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Include="**\*.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-  </ItemGroup>
+    <!-- WebAssembly Specific Configuration -->
+    <ItemGroup>
+        <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+        <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
+        <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
 
 </Project>
