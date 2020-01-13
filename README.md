@@ -17,9 +17,9 @@ First, import the component in `_Imports.razor`
 Then, add the `GoogleAnalytics` component below your Router in `App.razor`.<br/>
 The tracker listens to every navigation change while it's rendered on a page.
 
-```
-<Router ... />
-<GoogleAnalytics TrackingId="UA-XXXXXXXXX-X" />
+```diff
+    <Router ... />
++   <GoogleAnalytics TrackingId="UA-XXXXXXXXX-X" />
 ```
 
 ### ServerSide Specific Configuration
