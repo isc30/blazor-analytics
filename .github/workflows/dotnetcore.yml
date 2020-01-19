@@ -1,4 +1,4 @@
-name: .NET Core (Ubuntu
+name: .NET Core (Ubuntu)
 
 on: [push]
 
