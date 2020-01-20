@@ -19,3 +19,9 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build --configuration Release .\\src\\Blazor-Analytics.sln
+  
+    - name: Test with dotnet
+      run: dotnet test .\\src\\Blazor-Analytics.sln
+
+    - name: Push package to NuGet
+      run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
