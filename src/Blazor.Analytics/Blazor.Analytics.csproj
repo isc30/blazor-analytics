@@ -10,9 +10,11 @@
         <RootNamespace>Blazor.Analytics</RootNamespace>
         <AssemblyName>Blazor-Analytics</AssemblyName>
 
-        <Version>3.0.0</Version>
+        <Version>3.0.0.0</Version>
         <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Authors>isc30</Authors>
         <Company>CodeIsc</Company>
