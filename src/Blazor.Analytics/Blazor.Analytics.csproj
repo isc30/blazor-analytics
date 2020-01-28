@@ -10,9 +10,7 @@
         <RootNamespace>Blazor.Analytics</RootNamespace>
         <AssemblyName>Blazor-Analytics</AssemblyName>
 
-        <Version>3.0.0.2</Version>
         <IsPackable>true</IsPackable>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -32,16 +30,15 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0" />
+        <PackageReference Include="GitVersionTask" Version="5.1.3" />
     </ItemGroup>
 
+    <!-- TypeScript Build -->
     <ItemGroup>
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4" />
+        <TypeScriptCompile Include="**\*.ts" />
         <Content Remove="tsconfig.json" />
         <None Include="tsconfig.json" />
-    </ItemGroup>
-
-    <!-- Before Build -->
-    <ItemGroup>
-        <TypeScriptCompile Include="**\*.ts" />
     </ItemGroup>
 
     <!-- WebAssembly Specific Configuration -->
