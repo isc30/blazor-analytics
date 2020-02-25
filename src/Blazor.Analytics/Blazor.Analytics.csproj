@@ -36,9 +36,7 @@
     <!-- TypeScript Build -->
     <ItemGroup>
         <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4" />
-        <TypeScriptCompile Include="**\*.ts" />
-        <Content Remove="tsconfig.json" />
-        <None Include="tsconfig.json" />
+        <TypeScriptCompile Include="**/*.ts" />
     </ItemGroup>
 
     <!-- WebAssembly Specific Configuration -->
