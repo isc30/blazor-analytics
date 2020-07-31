@@ -31,6 +31,15 @@ Edit `_Host.cshtml` and apply the following change:
 +   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
 ```
 
+### WASM Specific Configuration
+
+Edit `index.html` and apply the following change:
+
+```diff
+    <script src="_framework/blazor.webassembly.js"></script>
++   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
+```
+
 
 # Changelog
 ### v3.0.0
