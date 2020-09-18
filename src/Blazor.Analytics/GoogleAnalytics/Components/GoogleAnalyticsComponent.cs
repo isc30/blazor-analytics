@@ -47,5 +47,10 @@ namespace Blazor.Analytics.GoogleAnalytics.Components
                     TrackingId, relativeUri);
             });
         }
+
+        public async void TrackEvent(string strEvent, string strEventCategory, string strEventLabel, string strEventValue)
+        {
+            await JSRuntime.InvokeAsync<string>(GoogleAnalyticsInterop.TrackEvent, strEvent, strEventCategory, strEventLabel, strEventValue);
+        }
     }
 }
