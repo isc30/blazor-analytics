@@ -30,16 +30,30 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.8" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.8" />
+<<<<<<< HEAD
         <PackageReference Include="GitVersionTask" Version="5.3.7"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
+=======
+        <PackageReference Include="GitVersionTask" Version="5.3.7">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+>>>>>>> 1f6c7cb37168edd7e9d9840e56db6978605b63a0
     </ItemGroup>
 
     <!-- TypeScript Build -->
     <ItemGroup>
+<<<<<<< HEAD
         <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.0.2"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
+=======
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.0.2">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+>>>>>>> 1f6c7cb37168edd7e9d9840e56db6978605b63a0
         <TypeScriptCompile Include="**/*.ts" />
     </ItemGroup>
 

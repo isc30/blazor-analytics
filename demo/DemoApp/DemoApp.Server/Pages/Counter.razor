@@ -7,10 +7,14 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    int currentCount = 0;
+    private int currentCount = 0;
 
-    void IncrementCount()
+    [Inject]
+    private Blazor.Analytics.IAnalytics Analytics { get; set; }
+
+    private void IncrementCount()
     {
         currentCount++;
+        Analytics.TrackEvent("Increment", currentCount.ToString(), "CountPage");
     }
 }
