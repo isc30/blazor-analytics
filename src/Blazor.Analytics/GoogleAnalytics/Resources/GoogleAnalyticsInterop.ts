@@ -28,13 +28,31 @@ namespace GoogleAnalyticsInterop
 
         gtag("config", trackingId);
 
-        console.log(`[GTAG][${trackingId}] Configured`);
+        console.log(`[GTAG][${trackingId}] Configured!`);
     }
 
     export function navigate(trackingId: string, href: string): void
     {
-        gtag("config", trackingId, { page_path: href });
+        gtag("config", trackingId, { page_location: href });
 
-        console.log(`[GTAG][${trackingId}] Navigated: ${href}`);
+        console.log(`[GTAG][${trackingId}] Navigated: '${href}'`);
+    }
+
+    export function trackEvent(trackingId: string, eventName: string, eventValue: string, eventCategory: string): void
+    {
+        gtag("event", eventName, {
+            send_to: trackingId,
+            value: eventValue,
+            event_category: eventCategory,
+        });
+
+        console.log(`[GTAG][${trackingId}] Event: '${eventName}'`);
+    }
+
+    export function trackEvent(event: string, eventCategory: string, eventLabel: string, eventValue: string)
+    {
+        gtag("event", event, { event_category: eventCategory, event_label: eventLabel, value: eventValue });
+
+        console.log(`[GTAG][Event trigered]: ${event}`);
     }
 }
