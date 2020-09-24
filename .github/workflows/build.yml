@@ -1,4 +1,4 @@
-name: .NET Core (Ubuntu)
+name: Build
 
 on: [push]
 
@@ -25,6 +25,3 @@ jobs:
 
     - name: Pack with dotnet
       run: dotnet pack --configuration Release .\\src\\Blazor-Analytics.sln
-
-    - name: Push package to NuGet
-      run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
