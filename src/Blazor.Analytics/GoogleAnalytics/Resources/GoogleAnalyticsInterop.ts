@@ -18,8 +18,9 @@ gtag("js", new Date());
 
 namespace GoogleAnalyticsInterop
 {
-    export function configure(trackingId: string): void
+    export function configure(trackingId: string, debug: boolean = false): void
     {
+        this.debug = debug;
         const script = document.createElement("script");
         script.async = true;
         script.src = "https://www.googletagmanager.com/gtag/js?id=" + trackingId;
@@ -28,20 +29,25 @@ namespace GoogleAnalyticsInterop
 
         gtag("config", trackingId);
 
-        console.log(`[GTAG][${trackingId}] Configured!`);
+        if(this.debug){
+            console.log(`[GTAG][${trackingId}] Configured!`);
+        }
     }
 
     export function navigate(trackingId: string, href: string): void
     {
         gtag("config", trackingId, { page_location: href });
 
-        console.log(`[GTAG][${trackingId}] Navigated: '${href}'`);
+        if(this.debug){
+            console.log(`[GTAG][${trackingId}] Navigated: '${href}'`);
+        }
     }
 
     export function trackEvent(event: string, eventCategory: string, eventLabel: string, eventValue: string)
     {
         gtag("event", event, { event_category: eventCategory, event_label: eventLabel, value: eventValue });
-
-        console.log(`[GTAG][Event trigered]: ${event}`);
+        if(this.debug){
+            console.log(`[GTAG][Event trigered]: ${event}`);
+        }
     }
 }
