@@ -11,6 +11,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         private string _trackingId = null;
         public bool _isInitialized = false;
+        public bool _debug = false;
 
         public GoogleAnalyticsStrategy(
             IJSRuntime jsRuntime)
@@ -18,9 +19,10 @@ namespace Blazor.Analytics.GoogleAnalytics
             _jsRuntime = jsRuntime;
         }
 
-        public void Configure(string trackingId)
+        public void Configure(string trackingId, bool debug)
         {
             _trackingId = trackingId;
+            _debug = debug;
         }
 
         public async Task Initialize(string trackingId)
@@ -31,7 +33,7 @@ namespace Blazor.Analytics.GoogleAnalytics
             }
 
             await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.Configure, trackingId);
+                GoogleAnalyticsInterop.Configure, trackingId, _debug);
 
             _trackingId = trackingId;
             _isInitialized = true;

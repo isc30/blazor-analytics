@@ -5,11 +5,14 @@ namespace Blazor.Analytics
 {
     public static class GoogleAnalyticsExtensions
     {
-        public static IServiceCollection AddGoogleAnalytics(this IServiceCollection services) => AddGoogleAnalytics(services, null);
+        public static IServiceCollection AddGoogleAnalytics(this IServiceCollection services) => AddGoogleAnalytics(services, null, false);
+        public static IServiceCollection AddGoogleAnalytics(this IServiceCollection services, string trackingId) => AddGoogleAnalytics(services, trackingId, false);
+        public static IServiceCollection AddGoogleAnalytics(this IServiceCollection services, bool debug) => AddGoogleAnalytics(services, null, debug);
 
         public static IServiceCollection AddGoogleAnalytics(
             this IServiceCollection services,
-            string trackingId)
+            string trackingId,
+            bool debug)
         {
             return services.AddScoped<IAnalytics>(p =>
             {
@@ -17,7 +20,7 @@ namespace Blazor.Analytics
 
                 if (trackingId != null)
                 {
-                    googleAnalytics.Configure(trackingId);
+                    googleAnalytics.Configure(trackingId, debug);
                 }
 
                 return googleAnalytics;
