@@ -2,6 +2,7 @@ assembly-versioning-scheme: MajorMinorPatchTag
 assembly-file-versioning-scheme: MajorMinorPatchTag
 commit-message-incrementing: Disabled
 mode: ContinuousDelivery
+tag-prefix: '[vV]'
 branches:
   master: 
     mode: ContinuousDeployment
