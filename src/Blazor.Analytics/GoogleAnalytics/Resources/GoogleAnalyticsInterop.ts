@@ -43,11 +43,11 @@ namespace GoogleAnalyticsInterop
         }
     }
 
-    export function trackEvent(event: string, eventCategory: string, eventLabel: string, eventValue: string)
+    export function trackEvent(eventName: string, eventCategory: string, eventLabel: string, eventValue: string)
     {
-        gtag("event", event, { event_category: eventCategory, event_label: eventLabel, value: eventValue });
+        gtag("event", eventName, { event_category: eventCategory, event_label: eventLabel, value: eventValue });
         if(this.debug){
-            console.log(`[GTAG][Event trigered]: ${event}`);
+            console.log(`[GTAG][Event triggered]: ${eventName}`);
         }
     }
 }
