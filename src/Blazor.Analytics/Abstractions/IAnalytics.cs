@@ -8,6 +8,7 @@ namespace Blazor.Analytics
 
         Task TrackNavigation(string uri);
 
-        Task TrackEvent(string eventName, string eventValue, string eventCategory = null);
+        Task TrackEvent(string eventName, string eventCategory = null, string eventLabel = null, int? eventValue = null);
+        Task TrackEvent(string eventName, int eventValue, string eventCategory = null, string eventLabel = null);
     }
 }
