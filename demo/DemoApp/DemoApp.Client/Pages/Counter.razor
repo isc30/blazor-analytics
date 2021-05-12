@@ -16,5 +16,8 @@
     {
         currentCount++;
         Analytics.TrackEvent("Increment", currentCount,  "CountPage");
+
+        //Example of how to track a generic event (see also https://developers.google.com/gtagjs/reference/ga4-events)
+        Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
     }
 }
