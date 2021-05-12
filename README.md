@@ -52,7 +52,15 @@ Inside your main `Startup`/`Program`, call `AddGoogleAnalytics`. This will confi
 # How to trigger an Analytics Event
 
 1. Inject `IAnalytics` wherever you want to trigger the event.
-2. Call `IAnalytics.TrackEvent` passing the `EventName`, `Value` and `Category` (optional).
+2. Call `IAnalytics.TrackEvent` passing the `EventName` and `EventData` (an object containing the event data).
+<br>Or<br>
+ Call `IAnalytics.TrackEvent` passing the `EventName`, `Value` and `Category` (optional).
+
+```
+@inject Blazor.Analytics.IAnalytics Analytics
+
+Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
+```
 
 # Changelog
 ### v3.1.0
