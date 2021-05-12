@@ -56,6 +56,21 @@ namespace Blazor.Analytics.GoogleAnalytics
             string eventLabel = null,
             int? eventValue = null)
         {
+            await TrackEvent(eventName, new
+            {
+                event_category = eventCategory, 
+                event_label = eventLabel, 
+                value = eventValue
+            });
+        }
+
+        public Task TrackEvent(string eventName, int eventValue, string eventCategory = null, string eventLabel = null)
+        {
+            return TrackEvent (eventName, eventCategory, eventLabel, eventValue);
+        }
+
+        public async Task TrackEvent(string eventName, object eventData)
+        {
             if (!_isInitialized)
             {
                 await Initialize(_trackingId);
@@ -63,12 +78,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
             await _jsRuntime.InvokeAsync<string>(
                 GoogleAnalyticsInterop.TrackEvent,
-                eventName, eventCategory, eventLabel, eventValue);
-        }
-
-        public Task TrackEvent(string eventName, int eventValue, string eventCategory = null, string eventLabel = null)
-        {
-            return TrackEvent (eventName, eventCategory, eventLabel, eventValue);
+                eventName, eventData);
         }
     }
 }
