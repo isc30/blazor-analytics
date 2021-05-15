@@ -27,7 +27,7 @@ namespace GoogleAnalyticsInterop
 
         document.head.appendChild(script);
 
-        gtag("config", trackingId);
+        gtag("config", trackingId, { 'send_page_view': false });
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Configured!`);
