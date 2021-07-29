@@ -10,6 +10,6 @@ namespace Blazor.Analytics.Abstractions
 
         void DisableTracking();
 
-        bool IsEnabledTracking();
+        bool IsTrackingEnabled();
     }
 }

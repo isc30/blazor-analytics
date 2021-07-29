@@ -13,6 +13,6 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public void EnableTracking() => _isEnableTracking = true;
 
-        public bool IsEnabledTracking() => _isEnableTracking;
+        public bool IsTrackingEnabled() => _isEnableTracking;
     }
 }
