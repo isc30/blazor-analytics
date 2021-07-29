@@ -15,7 +15,7 @@ namespace Blazor.Analytics
             string trackingId,
             bool debug)
         {
-            services.AddSingleton<ITrackingNavigationState, TrackingNavigationState>();
+            services.AddScoped<ITrackingNavigationState, TrackingNavigationState>();
             return services.AddScoped<IAnalytics>(p =>
             {
                 var googleAnalytics = ActivatorUtilities.CreateInstance<GoogleAnalyticsStrategy>(p);
