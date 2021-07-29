@@ -1,6 +1,7 @@
 ﻿@using System.Threading.Tasks
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Routing
+@using Blazor.Analytics.Abstractions
 
 @code
 {
@@ -9,6 +10,9 @@
 
     [Inject]
     protected NavigationManager NavigationManager { get; set; } = null;
+
+    [Inject]
+    protected ITrackingNavigationState TrackingNavigationState { get; set; } = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -38,6 +42,11 @@
 
     private async Task OnLocationChanged(string location)
     {
-        await Analytics.TrackNavigation(location);
+        if (TrackingNavigationState.IsTrackingEnabled())
+        {
+            await Analytics.TrackNavigation(location);
+        }
+
+        TrackingNavigationState.EnableTracking();
     }
 }
