@@ -1,4 +1,5 @@
-﻿using Blazor.Analytics.GoogleAnalytics;
+﻿using Blazor.Analytics.Abstractions;
+using Blazor.Analytics.GoogleAnalytics;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Blazor.Analytics
@@ -14,6 +15,7 @@ namespace Blazor.Analytics
             string trackingId,
             bool debug)
         {
+            services.AddSingleton<ITrackingNavigationState, TrackingNavigationState>();
             return services.AddScoped<IAnalytics>(p =>
             {
                 var googleAnalytics = ActivatorUtilities.CreateInstance<GoogleAnalyticsStrategy>(p);
