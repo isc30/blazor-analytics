@@ -42,7 +42,7 @@
 
     private async Task OnLocationChanged(string location)
     {
-        if (TrackingNavigationState.IsEnabledTracking())
+        if (TrackingNavigationState.IsTrackingEnabled())
         {
             await Analytics.TrackNavigation(location);
         }
