@@ -62,7 +62,26 @@ Inside your main `Startup`/`Program`, call `AddGoogleAnalytics`. This will confi
 Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
 ```
 
+# How to disable tracking on any page
+
+1.- Inject ITrackingState on blazor component
+
+```
+@using Blazor.Analytics.Abstractions
+@inject ITrackingState DisableNavigation
+```
+
+2.- Disable tracking on initialized
+```
+protected override void OnInitialized()
+{
+    DisableNavigation.DisableTracking();
+}
+```
+
 # Changelog
+### v3.7.0
+- Support for disable tracking on any page
 ### v3.1.0
 - Support for Events
 ### v3.0.0
