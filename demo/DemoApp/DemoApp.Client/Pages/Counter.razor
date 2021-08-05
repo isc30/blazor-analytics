@@ -17,7 +17,7 @@
 
     protected override void OnInitialized()
     {
-        TrackingNavigationState.DisableTracking();
+        TrackingNavigationState.DisableTracking(globally: true);
     }
 
     private void IncrementCount()

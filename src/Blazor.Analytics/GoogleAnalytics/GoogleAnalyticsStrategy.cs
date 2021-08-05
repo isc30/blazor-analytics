@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Blazor.Analytics.Abstractions;
 using Blazor.Analytics.Constants;
 using Microsoft.JSInterop;
 
@@ -8,15 +9,18 @@ namespace Blazor.Analytics.GoogleAnalytics
     public sealed class GoogleAnalyticsStrategy : IAnalytics
     {
         private readonly IJSRuntime _jsRuntime;
+        private readonly ITrackingNavigationState _navigationState;
 
         private string _trackingId = null;
         public bool _isInitialized = false;
         public bool _debug = false;
 
         public GoogleAnalyticsStrategy(
-            IJSRuntime jsRuntime)
+            IJSRuntime jsRuntime,
+            ITrackingNavigationState navigationState)
         {
             _jsRuntime = jsRuntime;
+            _navigationState = navigationState ?? throw new ArgumentNullException(nameof(navigationState));
         }
 
         public void Configure(string trackingId, bool debug)
@@ -71,6 +75,11 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public async Task TrackEvent(string eventName, object eventData)
         {
+            if (!_navigationState.IsTrackingEnabled())
+            {
+                return;
+            }
+
             if (!_isInitialized)
             {
                 await Initialize(_trackingId);
