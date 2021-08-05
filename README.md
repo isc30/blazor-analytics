@@ -10,7 +10,7 @@ https://nuget.org/packages/Blazor-Analytics
 
 First, import the namespaces in `_Imports.razor`
 
-```
+```csharp
 @using Blazor.Analytics
 @using Blazor.Analytics.Components
 ```
@@ -18,7 +18,7 @@ First, import the namespaces in `_Imports.razor`
 Then, add the `NavigationTracker` component below your Router in `App.razor`.<br/>
 The tracker listens to every navigation change while it's rendered on a page.
 
-```diff
+```csharp diff
     <Router ... />
 +   <NavigationTracker />
 ```
@@ -27,7 +27,7 @@ The tracker listens to every navigation change while it's rendered on a page.
 
 Edit `_Host.cshtml` and apply the following change:
 
-```diff
+```csharp diff
     <script src="_framework/blazor.server.js"></script>
 +   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
 ```
@@ -36,7 +36,7 @@ Edit `_Host.cshtml` and apply the following change:
 
 Edit `index.html` and apply the following change:
 
-```diff
+```csharp diff
     <script src="_framework/blazor.webassembly.js"></script>
 +   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
 ```
@@ -45,7 +45,7 @@ Edit `index.html` and apply the following change:
 
 Inside your main `Startup`/`Program`, call `AddGoogleAnalytics`. This will configure your GTAG_ID automatically.
 
-```diff
+```csharp diff
 +   services.AddGoogleAnalytics("YOUR_GTAG_ID");
 ```
 
@@ -56,7 +56,7 @@ Inside your main `Startup`/`Program`, call `AddGoogleAnalytics`. This will confi
 <br>Or<br>
  Call `IAnalytics.TrackEvent` passing the `EventName`, `Value` and `Category` (optional).
 
-```
+```csharp
 @inject Blazor.Analytics.IAnalytics Analytics
 
 Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
@@ -66,20 +66,30 @@ Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
 
 1.- Inject ITrackingState on blazor component
 
-```
+```csharp
 @using Blazor.Analytics.Abstractions
 @inject ITrackingState DisableNavigation
 ```
 
 2.- Disable tracking on initialized
-```
+2.1 For current page
+```csharp
 protected override void OnInitialized()
 {
     DisableNavigation.DisableTracking();
 }
 ```
+2.2 For whole application
+```csharp
+protected override void OnInitialized()
+{
+    DisableNavigation.DisableTracking(globally: true);
+}
+```
 
 # Changelog
+### v3.7.1
+- Support for globally enable/disable tracking for the whole application
 ### v3.7.0
 - Support for disable tracking on any page
 ### v3.1.0
