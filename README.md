@@ -75,6 +75,7 @@ Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
 ```
 
 2.- Disable tracking on initialized
+
 2.1 For current page
 ```csharp
 protected override void OnInitialized()
