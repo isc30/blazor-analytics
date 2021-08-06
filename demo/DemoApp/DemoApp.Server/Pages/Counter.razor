@@ -1,7 +1,9 @@
 ﻿@page "/counter"
 
 @using Blazor.Analytics.Abstractions
+@using Blazor.Analytics
 @inject ITrackingNavigationState TrackingNavigationState
+@inject IAnalytics GlobalTracking
 
 <h1>Counter</h1>
 
@@ -18,12 +20,13 @@
     protected override void OnInitialized()
     {
         TrackingNavigationState.DisableTracking();
+        GlobalTracking.Disable();
     }
 
     private void IncrementCount()
     {
         currentCount++;
-        //Analytics.TrackEvent("Increment", currentCount, "CountPage");
+        Analytics.TrackEvent("Increment", currentCount, "CountPage");
 
         //Example of how to track a generic event (see also https://developers.google.com/gtagjs/reference/ga4-events)
         Analytics.TrackEvent("generate_lead", new { currency = "USD", value = currentCount });

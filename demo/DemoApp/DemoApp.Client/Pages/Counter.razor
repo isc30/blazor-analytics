@@ -1,7 +1,9 @@
 ﻿@page "/counter"
 
 @using Blazor.Analytics.Abstractions
+@using Blazor.Analytics
 @inject ITrackingNavigationState TrackingNavigationState
+@inject IAnalytics GlobalTracking
 
 <h1>Counter</h1>
 
@@ -18,6 +20,7 @@
     protected override void OnInitialized()
     {
         TrackingNavigationState.DisableTracking();
+        GlobalTracking.Disable();
     }
 
     private void IncrementCount()

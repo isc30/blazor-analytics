@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Blazor.Analytics.Abstractions;
 using Blazor.Analytics.Constants;
 using Microsoft.JSInterop;
 
@@ -8,13 +9,15 @@ namespace Blazor.Analytics.GoogleAnalytics
     public sealed class GoogleAnalyticsStrategy : IAnalytics
     {
         private readonly IJSRuntime _jsRuntime;
+        private bool _isGloballyEnabledTracking = true;
 
         private string _trackingId = null;
         public bool _isInitialized = false;
         public bool _debug = false;
 
         public GoogleAnalyticsStrategy(
-            IJSRuntime jsRuntime)
+            IJSRuntime jsRuntime
+        )
         {
             _jsRuntime = jsRuntime;
         }
@@ -41,6 +44,11 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public async Task TrackNavigation(string uri)
         {
+            if (!_isGloballyEnabledTracking)
+            {
+                return;
+            }
+
             if (!_isInitialized)
             {
                 await Initialize(_trackingId);
@@ -71,6 +79,11 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public async Task TrackEvent(string eventName, object eventData)
         {
+            if (!_isGloballyEnabledTracking)
+            {
+                return;
+            }
+
             if (!_isInitialized)
             {
                 await Initialize(_trackingId);
@@ -80,5 +93,9 @@ namespace Blazor.Analytics.GoogleAnalytics
                 GoogleAnalyticsInterop.TrackEvent,
                 eventName, eventData);
         }
+
+        public void Enable() => _isGloballyEnabledTracking = true;
+
+        public void Disable() => _isGloballyEnabledTracking = false;
     }
 }

@@ -7,12 +7,12 @@ namespace Blazor.Analytics.GoogleAnalytics
 {
     public class TrackingNavigationState : ITrackingNavigationState
     {
-        private bool _isEnableTracking = true;
+        private bool _isTrackingEnabled = true;
 
-        public void DisableTracking() => _isEnableTracking = false;
+        public void DisableTracking() => _isTrackingEnabled = false;
 
-        public void EnableTracking() => _isEnableTracking = true;
+        public void EnableTracking() => _isTrackingEnabled = true;
 
-        public bool IsTrackingEnabled() => _isEnableTracking;
+        public bool IsTrackingEnabled() => _isTrackingEnabled;
     }
 }

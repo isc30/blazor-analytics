@@ -7,9 +7,7 @@ namespace Blazor.Analytics.Abstractions
     public interface ITrackingNavigationState
     {
         void EnableTracking();
-
         void DisableTracking();
-
         bool IsTrackingEnabled();
     }
 }
