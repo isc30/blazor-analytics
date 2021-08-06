@@ -91,7 +91,7 @@ protected override void OnInitialized()
 ```
 
 # Changelog
-### v3.7.1
+### v3.8.0
 - Support for globally enable/disable tracking for the whole application
 ### v3.7.0
 - Support for disable tracking on any page
