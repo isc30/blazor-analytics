@@ -9,18 +9,17 @@ namespace Blazor.Analytics.GoogleAnalytics
     public sealed class GoogleAnalyticsStrategy : IAnalytics
     {
         private readonly IJSRuntime _jsRuntime;
-        private readonly ITrackingNavigationState _navigationState;
+        private bool _isGloballyEnabledTracking = true;
 
         private string _trackingId = null;
         public bool _isInitialized = false;
         public bool _debug = false;
 
         public GoogleAnalyticsStrategy(
-            IJSRuntime jsRuntime,
-            ITrackingNavigationState navigationState)
+            IJSRuntime jsRuntime
+        )
         {
             _jsRuntime = jsRuntime;
-            _navigationState = navigationState ?? throw new ArgumentNullException(nameof(navigationState));
         }
 
         public void Configure(string trackingId, bool debug)
@@ -75,7 +74,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public async Task TrackEvent(string eventName, object eventData)
         {
-            if (!_navigationState.IsTrackingEnabled())
+            if (!_isGloballyEnabledTracking)
             {
                 return;
             }
@@ -89,5 +88,10 @@ namespace Blazor.Analytics.GoogleAnalytics
                 GoogleAnalyticsInterop.TrackEvent,
                 eventName, eventData);
         }
+
+        public void Enable() => _isGloballyEnabledTracking = true;
+
+        public void Disable() => _isGloballyEnabledTracking = false;
+        public bool IsEnabled() => _isGloballyEnabledTracking;
     }
 }

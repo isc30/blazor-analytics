@@ -27,7 +27,7 @@ The tracker listens to every navigation change while it's rendered on a page.
 
 Edit `_Host.cshtml` and apply the following change:
 
-```csharp diff
+```html diff
     <script src="_framework/blazor.server.js"></script>
 +   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
 ```
@@ -36,7 +36,7 @@ Edit `_Host.cshtml` and apply the following change:
 
 Edit `index.html` and apply the following change:
 
-```csharp diff
+```html diff
     <script src="_framework/blazor.webassembly.js"></script>
 +   <script src="_content/Blazor-Analytics/blazor-analytics.js"></script>
 ```
@@ -68,7 +68,10 @@ Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
 
 ```csharp
 @using Blazor.Analytics.Abstractions
-@inject ITrackingState DisableNavigation
+@using Blazor.Analytics
+
+@inject ITrackingNavigationState TrackingNavigationState
+@inject IAnalytics GlobalTracking
 ```
 
 2.- Disable tracking on initialized
@@ -83,7 +86,7 @@ protected override void OnInitialized()
 ```csharp
 protected override void OnInitialized()
 {
-    DisableNavigation.DisableTracking(globally: true);
+    GlobalTracking.Disable();
 }
 ```
 
