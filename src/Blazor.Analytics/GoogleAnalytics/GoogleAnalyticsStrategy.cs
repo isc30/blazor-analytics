@@ -44,6 +44,11 @@ namespace Blazor.Analytics.GoogleAnalytics
 
         public async Task TrackNavigation(string uri)
         {
+            if (!_isGloballyEnabledTracking)
+            {
+                return;
+            }
+
             if (!_isInitialized)
             {
                 await Initialize(_trackingId);
@@ -92,6 +97,5 @@ namespace Blazor.Analytics.GoogleAnalytics
         public void Enable() => _isGloballyEnabledTracking = true;
 
         public void Disable() => _isGloballyEnabledTracking = false;
-        public bool IsEnabled() => _isGloballyEnabledTracking;
     }
 }

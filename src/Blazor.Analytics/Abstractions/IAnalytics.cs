@@ -14,6 +14,5 @@ namespace Blazor.Analytics
 
         void Enable();
         void Disable();
-        bool IsEnabled();
     }
 }
