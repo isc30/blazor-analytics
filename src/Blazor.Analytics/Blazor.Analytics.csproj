@@ -45,13 +45,6 @@
         <TypeScriptCompile Include="**/*.ts" />
     </ItemGroup>
 
-    <!-- WebAssembly Specific Configuration -->
-    <ItemGroup>
-        <EmbeddedResource Include="wwwroot\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
-        <EmbeddedResource Include="wwwroot\**\*.css" LogicalName="blazor:css:%(RecursiveDir)%(Filename)%(Extension)" />
-        <EmbeddedResource Include="wwwroot\**" Exclude="**\*.js;**\*.css" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
-    </ItemGroup>
-
 	<ItemGroup>
 		<Content Update="tsconfig.json">
 			<Pack>false</Pack>
