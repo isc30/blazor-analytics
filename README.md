@@ -80,7 +80,7 @@ Analytics.TrackEvent("generate_lead", new {currency = "USD", value = 99.99});
 ```csharp
 protected override void OnInitialized()
 {
-    DisableNavigation.DisableTracking();
+    TrackingNavigationState.DisableTracking();
 }
 ```
 2.2 For whole application
