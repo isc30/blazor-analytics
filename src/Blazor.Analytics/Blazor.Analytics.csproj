@@ -16,6 +16,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Authors>isc30</Authors>
         <Company>CodeIsc</Company>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageId>Blazor-Analytics</PackageId>
         <Product>Blazor Analytics</Product>
         <Title>Blazor Analytics</Title>
