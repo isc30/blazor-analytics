@@ -18,7 +18,7 @@ gtag("js", new Date());
 
 namespace GoogleAnalyticsInterop
 {
-    export function configure(trackingId: string, debug: boolean = false): void
+    export function configure(trackingId: string, debug: boolean = false, anonymizeIp: boolean = false): void
     {
         this.debug = debug;
         const script = document.createElement("script");
@@ -27,7 +27,7 @@ namespace GoogleAnalyticsInterop
 
         document.head.appendChild(script);
 
-        gtag("config", trackingId, { 'send_page_view': false });
+        gtag("config", trackingId, { 'send_page_view': false, 'anonymize_ip': anonymizeIp });
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Configured!`);
