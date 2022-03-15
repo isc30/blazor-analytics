@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Blazor.Analytics
 {
     public interface IAnalytics
     {
-        //Task Initialize(string trackingId);
-
-        Task ConfigureExtra(string userId);
+        Task ConfigureGlobalConfigData(Dictionary<string, object> globalConfigData);
+        Task ConfigureGlobalEventData(Dictionary<string, object> globalEventData);
 
         Task TrackNavigation(string uri);
 

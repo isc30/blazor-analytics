@@ -23,7 +23,7 @@ namespace DemoApp.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddGoogleAnalytics("UA-111742878-2");
+            services.AddGoogleAnalytics("G-2RPDYFVJG9");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

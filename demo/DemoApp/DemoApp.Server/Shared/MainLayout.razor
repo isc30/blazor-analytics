@@ -16,11 +16,19 @@
 </div>
 
 @code {
+
     [Inject]
     private Blazor.Analytics.IAnalytics Analytics { get; set; }
 
     protected override void OnInitialized()
     {
-        this.Analytics.ConfigureExtra($"userid{DateTime.Now.Ticks}");
+        var userId = $"userid{DateTime.Now.Ticks}";
+        var globalConfigData = new Dictionary<string, object>();
+        globalConfigData["user_id"] = userId;
+        var globalEventDataObject = new Dictionary<string, object>();
+        globalEventDataObject["user_id"] = userId;
+
+        this.Analytics.ConfigureGlobalConfigData(globalConfigData);
+        this.Analytics.ConfigureGlobalEventData(globalEventDataObject);
     }
 }

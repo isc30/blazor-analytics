@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blazor.Analytics.Abstractions;
 using Blazor.Analytics.Constants;
@@ -12,7 +13,8 @@ namespace Blazor.Analytics.GoogleAnalytics
         private bool _isGloballyEnabledTracking = true;
 
         private string _trackingId = null;
-        private string _userId = null;
+        private Dictionary<string, object> _globalConfigData = new Dictionary<string, object>();
+        private Dictionary<string, object> _globalEventData = new Dictionary<string, object>();
         private bool _isInitialized = false;
         private bool _debug = false;
 
@@ -37,19 +39,24 @@ namespace Blazor.Analytics.GoogleAnalytics
             }
 
             await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.Configure, _trackingId, _userId, _debug);
+                GoogleAnalyticsInterop.Configure, _trackingId, _globalConfigData, _debug);
             
             _isInitialized = true;
         }
 
-        public async Task ConfigureExtra(string userId)
+        public async Task ConfigureGlobalConfigData(Dictionary<string, object> globalConfigData)
         {
             if (!_isInitialized)
             {
-                this._userId = userId;
+                this._globalConfigData = globalConfigData;
 
                 await Initialize();
             }
+        }
+
+        public async Task ConfigureGlobalEventData(Dictionary<string, object> globalEventData)
+        {
+            this._globalEventData = globalEventData;
         }
 
         public async Task TrackNavigation(string uri)
@@ -101,7 +108,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
             await _jsRuntime.InvokeAsync<string>(
                 GoogleAnalyticsInterop.TrackEvent,
-                eventName, eventData);
+                eventName, eventData, _globalEventData);
         }
 
         public void Enable() => _isGloballyEnabledTracking = true;

@@ -5,6 +5,10 @@ interface Window
     gtag: (...args: any[]) => void;
 }
 
+interface ObjectConstructor {
+    assign(...objects: Object[]): Object;
+}
+
 interface ConfigObject {
     [key: string]: any
 }
@@ -27,10 +31,10 @@ gtag("js", new Date());
 
 namespace GoogleAnalyticsInterop
 {
-    export function configure(trackingId: string, userId: string, debug: boolean = false): void
+    export function configure(trackingId: string, globalConfigObject: ConfigObject, debug: boolean = false): void
     {
-        this.userId = userId;
         this.debug = debug;
+        this.globalConfigObject = globalConfigObject;
         const script = document.createElement("script");
         script.async = true;
         script.src = "https://www.googletagmanager.com/gtag/js?id=" + trackingId;
@@ -39,9 +43,7 @@ namespace GoogleAnalyticsInterop
 
         let configObject: ConfigObject = {};
         configObject.send_page_view = false;
-        if (userId !== null && userId !== undefined) {
-            configObject.user_id = userId;
-        }
+        Object.assign(configObject, globalConfigObject)
 
         gtag("config", trackingId, configObject);
 
@@ -55,10 +57,7 @@ namespace GoogleAnalyticsInterop
         let configObject: ConfigObject = {};
 
         configObject.page_location = href;
-        if (this.userId !== null && this.userId !== undefined) {
-            configObject.user_id = this.userId;
-        }
-
+        Object.assign(configObject, this.globalConfigObject)
         gtag("config", trackingId, configObject);
 
         if(this.debug){
@@ -66,11 +65,9 @@ namespace GoogleAnalyticsInterop
         }
     }
 
-    export function trackEvent(eventName: string, eventData: EventDataObject)
+    export function trackEvent(eventName: string, eventData: EventDataObject, globalEventData: EventDataObject)
     {
-        if (this.userId !== null && this.userId !== undefined) {
-            eventData.user_id = this.userId;
-        }
+        Object.assign(eventData, globalEventData)
 
         gtag("event", eventName, eventData);
         if (this.debug) {
