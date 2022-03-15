@@ -4,7 +4,9 @@ namespace Blazor.Analytics
 {
     public interface IAnalytics
     {
-        Task Initialize(string trackingId);
+        //Task Initialize(string trackingId);
+
+        Task ConfigureExtra(string userId);
 
         Task TrackNavigation(string uri);
 

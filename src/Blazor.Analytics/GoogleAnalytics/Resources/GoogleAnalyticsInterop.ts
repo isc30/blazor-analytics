@@ -5,6 +5,15 @@ interface Window
     gtag: (...args: any[]) => void;
 }
 
+interface ConfigObject {
+    [key: string]: any
+}
+
+interface EventDataObject {
+    [key: string]: any
+}
+
+
 // declare globals
 declare const dataLayer: any[];
 declare const gtag: (...args: any[]) => void;
@@ -18,8 +27,9 @@ gtag("js", new Date());
 
 namespace GoogleAnalyticsInterop
 {
-    export function configure(trackingId: string, debug: boolean = false): void
+    export function configure(trackingId: string, userId: string, debug: boolean = false): void
     {
+        this.userId = userId;
         this.debug = debug;
         const script = document.createElement("script");
         script.async = true;
@@ -27,7 +37,13 @@ namespace GoogleAnalyticsInterop
 
         document.head.appendChild(script);
 
-        gtag("config", trackingId, { 'send_page_view': false });
+        let configObject: ConfigObject = {};
+        configObject.send_page_view = false;
+        if (userId !== null && userId !== undefined) {
+            configObject.user_id = userId;
+        }
+
+        gtag("config", trackingId, configObject);
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Configured!`);
@@ -36,15 +52,26 @@ namespace GoogleAnalyticsInterop
 
     export function navigate(trackingId: string, href: string): void
     {
-        gtag("config", trackingId, { page_location: href });
+        let configObject: ConfigObject = {};
+
+        configObject.page_location = href;
+        if (this.userId !== null && this.userId !== undefined) {
+            configObject.user_id = this.userId;
+        }
+
+        gtag("config", trackingId, configObject);
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Navigated: '${href}'`);
         }
     }
 
-    export function trackEvent(eventName: string, eventData: object) 
+    export function trackEvent(eventName: string, eventData: EventDataObject)
     {
+        if (this.userId !== null && this.userId !== undefined) {
+            eventData.user_id = this.userId;
+        }
+
         gtag("event", eventName, eventData);
         if (this.debug) {
           console.log(`[GTAG][Event triggered]: ${eventName}`);

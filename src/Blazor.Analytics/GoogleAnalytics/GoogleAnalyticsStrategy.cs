@@ -12,8 +12,9 @@ namespace Blazor.Analytics.GoogleAnalytics
         private bool _isGloballyEnabledTracking = true;
 
         private string _trackingId = null;
-        public bool _isInitialized = false;
-        public bool _debug = false;
+        private string _userId = null;
+        private bool _isInitialized = false;
+        private bool _debug = false;
 
         public GoogleAnalyticsStrategy(
             IJSRuntime jsRuntime
@@ -28,18 +29,27 @@ namespace Blazor.Analytics.GoogleAnalytics
             _debug = debug;
         }
 
-        public async Task Initialize(string trackingId)
+        private async Task Initialize()
         {
-            if (trackingId == null)
+            if (_trackingId == null)
             {
                 throw new InvalidOperationException("Invalid TrackingId");
             }
 
             await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.Configure, trackingId, _debug);
-
-            _trackingId = trackingId;
+                GoogleAnalyticsInterop.Configure, _trackingId, _userId, _debug);
+            
             _isInitialized = true;
+        }
+
+        public async Task ConfigureExtra(string userId)
+        {
+            if (!_isInitialized)
+            {
+                this._userId = userId;
+
+                await Initialize();
+            }
         }
 
         public async Task TrackNavigation(string uri)
@@ -51,7 +61,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
             if (!_isInitialized)
             {
-                await Initialize(_trackingId);
+                await Initialize();
             }
 
             await _jsRuntime.InvokeAsync<string>(
@@ -86,7 +96,7 @@ namespace Blazor.Analytics.GoogleAnalytics
 
             if (!_isInitialized)
             {
-                await Initialize(_trackingId);
+                await Initialize();
             }
 
             await _jsRuntime.InvokeAsync<string>(
