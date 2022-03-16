@@ -5,6 +5,19 @@ interface Window
     gtag: (...args: any[]) => void;
 }
 
+interface ObjectConstructor {
+    assign(...objects: Object[]): Object;
+}
+
+interface ConfigObject {
+    [key: string]: any
+}
+
+interface EventDataObject {
+    [key: string]: any
+}
+
+
 // declare globals
 declare const dataLayer: any[];
 declare const gtag: (...args: any[]) => void;
@@ -18,16 +31,21 @@ gtag("js", new Date());
 
 namespace GoogleAnalyticsInterop
 {
-    export function configure(trackingId: string, debug: boolean = false): void
+    export function configure(trackingId: string, globalConfigObject: ConfigObject, debug: boolean = false): void
     {
         this.debug = debug;
+        this.globalConfigObject = globalConfigObject;
         const script = document.createElement("script");
         script.async = true;
         script.src = "https://www.googletagmanager.com/gtag/js?id=" + trackingId;
 
         document.head.appendChild(script);
 
-        gtag("config", trackingId, { 'send_page_view': false });
+        let configObject: ConfigObject = {};
+        configObject.send_page_view = false;
+        Object.assign(configObject, globalConfigObject)
+
+        gtag("config", trackingId, configObject);
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Configured!`);
@@ -36,15 +54,21 @@ namespace GoogleAnalyticsInterop
 
     export function navigate(trackingId: string, href: string): void
     {
-        gtag("config", trackingId, { page_location: href });
+        let configObject: ConfigObject = {};
+
+        configObject.page_location = href;
+        Object.assign(configObject, this.globalConfigObject)
+        gtag("config", trackingId, configObject);
 
         if(this.debug){
             console.log(`[GTAG][${trackingId}] Navigated: '${href}'`);
         }
     }
 
-    export function trackEvent(eventName: string, eventData: object) 
+    export function trackEvent(eventName: string, eventData: EventDataObject, globalEventData: EventDataObject)
     {
+        Object.assign(eventData, globalEventData)
+
         gtag("event", eventName, eventData);
         if (this.debug) {
           console.log(`[GTAG][Event triggered]: ${eventName}`);

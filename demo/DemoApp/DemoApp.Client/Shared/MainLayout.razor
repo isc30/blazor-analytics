@@ -13,3 +13,20 @@
         @Body
     </div>
 </div>
+
+@code {
+    [Inject]
+    private Blazor.Analytics.IAnalytics Analytics { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var userId = $"userid{DateTime.Now.Ticks}";
+        var globalConfigData = new Dictionary<string, object>();
+        globalConfigData["user_id"] = userId;
+        var globalEventData = new Dictionary<string, object>();
+        globalEventData["user_id"] = userId;
+
+        this.Analytics.ConfigureGlobalConfigData(globalConfigData);
+        this.Analytics.ConfigureGlobalEventData(globalEventData);
+    }
+}
