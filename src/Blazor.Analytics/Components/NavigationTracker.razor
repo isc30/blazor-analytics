@@ -16,7 +16,7 @@
     [Inject]
     protected ITrackingNavigationState TrackingNavigationState { get; set; } = null;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         NavigationManager.LocationChanged += OnLocationChanged;
     }
