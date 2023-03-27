@@ -16,7 +16,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        NavigationManager.LocationChanged -= OnLocationChanged;
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
