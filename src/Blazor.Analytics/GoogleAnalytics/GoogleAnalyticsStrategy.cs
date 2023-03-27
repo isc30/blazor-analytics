@@ -63,7 +63,7 @@ namespace Blazor.Analytics.GoogleAnalytics
             }
         }
 
-        public async Task ConfigureGlobalEventData(Dictionary<string, object> globalEventData)
+        public void ConfigureGlobalEventData(Dictionary<string, object> globalEventData)
         {
             this._globalEventData = globalEventData;
         }
