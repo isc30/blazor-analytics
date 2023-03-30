@@ -5,7 +5,7 @@ namespace Blazor.Analytics
 {
     public interface IAnalytics
     {
-        async Task ConfigureGlobalConfigData(Dictionary<string, object> globalConfigData);
+        Task ConfigureGlobalConfigData(Dictionary<string, object> globalConfigData);
         void ConfigureGlobalEventData(Dictionary<string, object> globalEventData);
 
         Task TrackNavigation(string uri);
