@@ -17,7 +17,8 @@ namespace Blazor.Analytics.GoogleAnalytics
         private Dictionary<string, object> _globalEventData = new Dictionary<string, object>();
         private bool _isInitialized = false;
         private bool _debug = false;
-
+        private bool _interopError = false;
+        
         public GoogleAnalyticsStrategy(
             IJSRuntime jsRuntime
         )
@@ -38,8 +39,16 @@ namespace Blazor.Analytics.GoogleAnalytics
                 throw new InvalidOperationException("Invalid TrackingId");
             }
 
-            await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.Configure, _trackingId, _globalConfigData, _debug);
+            try
+            {
+                await _jsRuntime.InvokeAsync<string>(
+                    GoogleAnalyticsInterop.Configure, _trackingId, _globalConfigData, _debug);
+            }
+            catch (JSException)
+            {
+                _interopError = true;
+                Disable();
+            }
             
             _isInitialized = true;
         }
@@ -54,7 +63,7 @@ namespace Blazor.Analytics.GoogleAnalytics
             }
         }
 
-        public async Task ConfigureGlobalEventData(Dictionary<string, object> globalEventData)
+        public void ConfigureGlobalEventData(Dictionary<string, object> globalEventData)
         {
             this._globalEventData = globalEventData;
         }
@@ -71,8 +80,21 @@ namespace Blazor.Analytics.GoogleAnalytics
                 await Initialize();
             }
 
-            await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.Navigate, _trackingId, uri);
+            if (_interopError)
+            {
+                return;
+            }
+
+            try
+            {
+                await _jsRuntime.InvokeAsync<string>(
+                    GoogleAnalyticsInterop.Navigate, _trackingId, uri);
+            }
+            catch (JSException)
+            {
+                _interopError = true;
+                Disable();
+            }
         }
 
         public async Task TrackEvent(
@@ -106,12 +128,31 @@ namespace Blazor.Analytics.GoogleAnalytics
                 await Initialize();
             }
 
-            await _jsRuntime.InvokeAsync<string>(
-                GoogleAnalyticsInterop.TrackEvent,
-                eventName, eventData, _globalEventData);
+            if (_interopError)
+            {
+                return;
+            }
+
+            try
+            {
+                await _jsRuntime.InvokeAsync<string>(
+                    GoogleAnalyticsInterop.TrackEvent,
+                    eventName, eventData, _globalEventData);
+            }
+            catch (JSException)
+            {
+                _interopError = true;
+                Disable();
+            }
         }
 
-        public void Enable() => _isGloballyEnabledTracking = true;
+        public void Enable()
+        {
+            if (_interopError) 
+                return;
+
+            _isGloballyEnabledTracking = true;
+        }
 
         public void Disable() => _isGloballyEnabledTracking = false;
     }

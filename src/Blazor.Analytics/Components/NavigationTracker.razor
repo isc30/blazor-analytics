@@ -3,6 +3,8 @@
 @using Microsoft.AspNetCore.Components.Routing
 @using Blazor.Analytics.Abstractions
 
+@implements IDisposable
+
 @code
 {
     [Inject]
@@ -14,18 +16,13 @@
     [Inject]
     protected ITrackingNavigationState TrackingNavigationState { get; set; } = null;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await base.OnInitializedAsync();
-
-        NavigationManager.LocationChanged -= OnLocationChanged;
         NavigationManager.LocationChanged += OnLocationChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if (firstRender)
         {
             // Track initial navigation
