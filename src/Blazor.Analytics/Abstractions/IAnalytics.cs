@@ -6,7 +6,7 @@ namespace Blazor.Analytics
     public interface IAnalytics
     {
         Task ConfigureGlobalConfigData(Dictionary<string, object> globalConfigData);
-        Task ConfigureGlobalEventData(Dictionary<string, object> globalEventData);
+        void ConfigureGlobalEventData(Dictionary<string, object> globalEventData);
 
         Task TrackNavigation(string uri);
 
