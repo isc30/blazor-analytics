@@ -26,12 +26,15 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
         <Copyright>Ivan Sanz Carasa (isc30)</Copyright>
+        
+        <!-- Static Web Assets Configuration for .NET 8+ compatibility -->
+        <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.8" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.8" />
-        <PackageReference Include="GitVersionTask" Version="5.3.7">
+        <PackageReference Include="GitVersion.MsBuild" Version="6.3.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -50,6 +53,17 @@
 		<Content Update="tsconfig.json">
 			<Pack>false</Pack>
 		</Content>
+	</ItemGroup>
+
+	<!-- Static Web Assets Configuration -->
+	<ItemGroup>
+		<StaticWebAsset Include="wwwroot/blazor-analytics.js" Condition="Exists('wwwroot/blazor-analytics.js')">
+			<SourceType>Discovered</SourceType>
+			<SourceId>$(PackageId)</SourceId>
+			<ContentRoot>$(MSBuildProjectDirectory)/wwwroot</ContentRoot>
+			<BasePath>_content/$(PackageId)</BasePath>
+			<RelativePath>blazor-analytics.js</RelativePath>
+		</StaticWebAsset>
 	</ItemGroup>
 
 </Project>
