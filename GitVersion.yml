@@ -6,7 +6,7 @@ tag-prefix: '[vV]'
 branches:
   master: 
     mode: ContinuousDeployment
-    tag: beta
+    label: beta
     regex: master$
     increment: minor
     source-branches:
@@ -17,7 +17,7 @@ branches:
   feature:
     mode: ContinuousDeployment
     regex: features?[/-]
-    tag: useBranchName
+    label: useBranchName
     increment: Inherit
     source-branches:
     - master
@@ -27,7 +27,7 @@ branches:
   task:
     mode: ContinuousDeployment
     regex: tasks?[/-]
-    tag: useBranchName
+    label: useBranchName
     increment: Inherit
     source-branches:
     - master
@@ -37,9 +37,10 @@ branches:
   hotfix:
     mode: ContinuousDeployment
     regex: hotfix[/-]
-    tag: 'patch'
+    label: 'patch'
     increment: Patch
-    prevent-increment-of-merged-branch-version: true
+    prevent-increment:
+      of-merged-branch: true
     source-branches:
     - master
     - feature
@@ -49,7 +50,7 @@ branches:
   bugfix:
     mode: ContinuousDeployment
     regex: bugfixs?[/-]
-    tag: useBranchName
+    label: useBranchName
     increment: Inherit
     source-branches:
     - master
